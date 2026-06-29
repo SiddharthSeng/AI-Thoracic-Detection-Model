@@ -174,10 +174,6 @@ You will also need to download the datasets from Kaggle and update the `BASE_ROO
 ## Project Team & Authors
 
 **Siddharth Senguttuvan** (22143049) — *System Design, Hybrid/Ensemble Modeling, GPU Training & Analysis*  
-**Syed Afreethi D** (22143019) — *Dataset Curation, Preprocessing & Data Splitting Pipeline*  
-**Staniyamol Joseph** (22143036) — *CNN Baseline Training, Evaluation & Visualizations*  
-**Abdul Karim D** (22143043) — *BiLSTM RNN Implementation & Comparative Validation*  
-
 B.Tech Computer Science and Engineering (Artificial Intelligence & Machine Learning)  
 **Hindustan Institute of Technology and Science (HITS)**, Chennai  
 
