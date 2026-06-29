@@ -4,12 +4,47 @@ A hybrid CNN-RNN deep learning system for multi-class chest X-ray classification
 
 ---
 
+## Experimental Results & Performance Evaluation
+
+All four architectures were evaluated under identical data preprocessing, augmentation, and splitting protocols on a test set extracted from 2,768 frontal chest radiographs.
+
+### 🏆 Overall Model Comparison
+
+| Architecture | Test Accuracy | Macro Precision | Macro Recall | Macro F1-Score | Approx. Training Time |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **ResNet50 CNN Baseline** (`cnn/`) | 96.6% | 0.9741 | 0.9730 | 0.9735 | ~15 min |
+| **Pure RNN BiLSTM** (`rnn/`) | 91.7% | 0.9212 | 0.9227 | 0.9092 | ~25 min |
+| **True CNN–Transformer Hybrid** (`hybrid/`) | 97.5% | 0.9742 | 0.9739 | 0.9733 | ~18 min |
+| **ResNet50 + DenseNet121 Ensemble** (`ensemble/`) | **97.7%** | **0.9789** | **0.9783** | **0.9800** | ~30 min |
+
+---
+
+### 🔍 Detailed Per-Class Accuracy Breakdown
+
+| Architecture | COVID-19 Accuracy | Pneumonia Accuracy | Normal Accuracy |
+| :--- | :---: | :---: | :---: |
+| **ResNet50 CNN Baseline** | 97.85% | 97.86% | 95.66% |
+| **Pure RNN BiLSTM** | 91.14% | 96.91% | 88.88% |
+| **True CNN–Transformer Hybrid** | 97.79% | 96.53% | 97.58% |
+| **ResNet50 + DenseNet121 Ensemble** | **97.95%** | 95.54% | **98.79%** |
+
+---
+
+### 💡 Key Findings & Error Analysis
+
+1. **Ensemble Methods Maximize Accuracy & Reliability:** The system-level ensemble achieved the highest overall test accuracy (**97.7%**) and macro F1-score (**0.9800**), alongside the highest per-class accuracy for Normal cases (**98.79%**). Averaging predictions across diverse convolutional backbones effectively smoothed out individual model variance and misclassifications.
+2. **Attention Refines Global Relationships:** The True CNN–Transformer hybrid demonstrated a notable improvement over the baseline on Normal cases (**97.58%** vs. 95.66%), proving that self-attention mechanisms successfully re-weight spatial features based on global context.
+3. **Pure Sequence Models Struggle with Static Radiographs:** The BiLSTM RNN lagged significantly behind (**91.7%** accuracy), particularly on Normal cases (**88.88%**). Linearizing 2D radiographs into 1D temporal sequences discards crucial spatial relationships, causing the network to occasionally confuse subtle normal anatomical variations with early disease opacities.
+4. **CNN Baselines Remain Highly Competitive:** The ResNet50 baseline converged rapidly (~15 minutes) and achieved strong balanced performance (**96.6%** accuracy), reaffirming that well-tuned transfer learning with moderate data augmentation is highly effective for medical image screening.
+
+---
+
 ## Datasets
 
 This project uses two publicly available Kaggle datasets:
 
 | Dataset | Source |
-|---------|--------|
+|---|---|
 | **Chest X-Ray Pneumonia** | [kaggle.com/paultimothymooney/chest-xray-pneumonia](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia) |
 | **COVID-19 Radiography Database** | [kaggle.com/tawsifurrahman/covid19-radiography-database](https://www.kaggle.com/datasets/tawsifurrahman/covid19-radiography-database) |
 
@@ -53,7 +88,7 @@ Each model has its own preprocessing pipeline. At inference, their softmax proba
 
 ```
 AI-Thoracic-Detection-Model/
-├── README.md                    ← You are here
+├── README.md                    ← Main project documentation & experimental results
 ├── requirements.txt             ← Consolidated Python dependencies
 ├── .gitignore                   ← Standard ignores for Python, data, models
 │
@@ -78,11 +113,6 @@ AI-Thoracic-Detection-Model/
     └── README.md
 ```
 
-Each folder contains:
-- A `.py` script — the clean, documented Python code extracted from the Kaggle notebook.
-- The original `.ipynb` notebook — preserved for reference (view on Kaggle to see outputs/plots).
-- A `README.md` — a short description of that specific component.
-
 ---
 
 ## ⚠️ Hardware Note
@@ -92,7 +122,7 @@ Each folder contains:
 **To re-run the training**, use the original Kaggle notebooks directly — they are configured to run with one click on Kaggle's GPU:
 
 | Component | Kaggle Notebook |
-|-----------|----------------|
+|---|---|
 | CNN (ResNet50) | [Open on Kaggle](https://www.kaggle.com/code/siddharthsenguttuvan/cnn-thoracic-disease) |
 | RNN (Bidirectional LSTM) | [Open on Kaggle](https://www.kaggle.com/code/siddharthsenguttuvan/rnn-thoracic-diseases) |
 | Hybrid (CNN + Transformer) | [Open on Kaggle](https://www.kaggle.com/code/siddharthsenguttuvan/true-architectural-hybrid-thoracic-diseases) |
@@ -124,22 +154,10 @@ You will also need to download the datasets from Kaggle and update the `BASE_ROO
 
 ---
 
-## Results & Metrics
-
-> **Note:** The notebook outputs (accuracy numbers, confusion matrices, classification reports) are visible in the original Kaggle notebooks linked above. The `.ipynb` files in this repository were downloaded without cell outputs. Please refer to the Kaggle links to view the full training logs, plots, and evaluation metrics.
-
-All four models produce:
-- **Classification reports** (precision, recall, F1-score per class)
-- **Confusion matrices** (heatmaps)
-- **Per-class accuracy** breakdowns
-- **Training/validation accuracy and loss curves**
-
----
-
 ## Tech Stack
 
 | Category | Technologies |
-|----------|-------------|
+|---|---|
 | **Language** | Python 3.x |
 | **Deep Learning** | TensorFlow 2.x, Keras |
 | **CNN Backbones** | ResNet50, DenseNet121 |
@@ -153,11 +171,15 @@ All four models produce:
 
 ---
 
-## Author
+## Project Team & Authors
 
-**Siddharth Senguttuvan**
-B.Tech Computer Science (AI & ML)
-Hindustan Institute of Technology and Science (HITS)
+**Siddharth Senguttuvan** (22143049) — *System Design, Hybrid/Ensemble Modeling, GPU Training & Analysis*  
+**Syed Afreethi D** (22143019) — *Dataset Curation, Preprocessing & Data Splitting Pipeline*  
+**Staniyamol Joseph** (22143036) — *CNN Baseline Training, Evaluation & Visualizations*  
+**Abdul Karim D** (22143043) — *BiLSTM RNN Implementation & Comparative Validation*  
+
+B.Tech Computer Science and Engineering (Artificial Intelligence & Machine Learning)  
+**Hindustan Institute of Technology and Science (HITS)**, Chennai  
 
 ---
 

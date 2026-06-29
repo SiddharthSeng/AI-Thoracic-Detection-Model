@@ -4,7 +4,16 @@ This folder contains the standalone CNN model for thoracic disease classificatio
 
 This component serves as the baseline CNN approach. Its predictions are also used as one input to the system-level ensemble in `../ensemble/`.
 
+### 📊 Experimental Results
+
+| Metric | Score | Per-Class Accuracy Breakdown |
+| :--- | :---: | :--- |
+| **Test Accuracy** | **96.6%** | • **COVID-19:** 97.85% |
+| **Macro Precision** | **0.9741** | • **Pneumonia:** 97.86% |
+| **Macro Recall** | **0.9730** | • **Normal:** 95.66% |
+| **Macro F1-Score** | **0.9735** | *Approx. Training Time: ~15 min (Tesla T4)* |
+
 | File | Description |
-|------|-------------|
+|---|---|
 | `cnn_thoracic_disease.py` | Clean Python script extracted from the notebook |
 | `cnn_thoracic_disease.ipynb` | Original Kaggle notebook (with outputs) |

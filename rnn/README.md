@@ -4,7 +4,18 @@ This folder contains the pure RNN model for thoracic disease classification. It 
 
 This component demonstrates a pure sequence-based approach to image classification without any convolutional layers, serving as a complementary architecture to the CNN baseline.
 
+### 📊 Experimental Results
+
+| Metric | Score | Per-Class Accuracy Breakdown |
+| :--- | :---: | :--- |
+| **Test Accuracy** | **91.7%** | • **COVID-19:** 91.14% |
+| **Macro Precision** | **0.9212** | • **Pneumonia:** 96.91% |
+| **Macro Recall** | **0.9227** | • **Normal:** 88.88% |
+| **Macro F1-Score** | **0.9092** | *Approx. Training Time: ~25 min (Tesla T4)* |
+
+> **Note:** The lower accuracy on Normal cases (88.88%) illustrates that flattening 2D radiographs into 1D sequences discards critical spatial relationships needed to distinguish subtle anatomical variations.
+
 | File | Description |
-|------|-------------|
+|---|---|
 | `rnn_thoracic_diseases.py` | Clean Python script extracted from the notebook |
 | `rnn_thoracic_diseases.ipynb` | Original Kaggle notebook (with outputs) |
