@@ -1,0 +1,53 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+
+# === Virtual Environments ===
+venv/
+env/
+.env/
+.venv/
+
+# === Jupyter Notebook ===
+.ipynb_checkpoints/
+
+# === Data & Model Artifacts (too large for Git) ===
+data/
+datasets/
+*.h5
+*.hdf5
+*.keras
+*.weights
+*.pb
+*.tflite
+*.onnx
+models/
+saved_models/
+checkpoints/
+
+# === Training Outputs ===
+*.png
+*.log
+wandb/
+runs/
+logs/
+
+# === IDE & OS ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Kaggle metadata ===
+kernel-metadata.json

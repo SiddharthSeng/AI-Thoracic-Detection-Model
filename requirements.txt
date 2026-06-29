@@ -1,0 +1,16 @@
+# Core Deep Learning
+tensorflow>=2.12,<3.0
+
+# Data Processing
+numpy
+pandas
+
+# Visualization
+matplotlib
+seaborn
+
+# Machine Learning Utilities
+scikit-learn
+
+# Image I/O (used internally by TensorFlow/Keras)
+Pillow
